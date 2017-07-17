@@ -1,0 +1,62 @@
+FLOW
+
+User sees dashboard with 5 options, krav, jujitsu, kempo, jkd and silat ->
+
+They click one and then are either:
+
+    Taken to a new page with student names and a search bar
+    Modal pops up with such ->
+
+They
+    Select their name,
+    Confirm sign in with class info,
+    Get a success message and redirect back to dashboard
+
+Admin sees dashboard with several options(look into adding charts to this section). Maybe overall class attendance?
+
+Two tabs up top: See class attendance by class OR student
+
+Student:
+
+    A similar list pops up with a search bar to filter it
+
+    When a student is clicked, it takes you to a profile page that has their
+    overall attendance and links for each class and either:
+
+        When a class is clicked it takes you to a dashboard in which the data is displayed somehow
+        When a class is clicked it takes you to a dashboard where the classes they've attended overtake
+
+Class
+
+    A class is automatically picked and info displayed below drop down. Drop down changes view.
+    Calendar to check between certain dates?
+
+
+DISPERATE PIECES
+  List of classes available
+  List of students
+  List of check-ins by students
+
+
+APP STRUCTURE:
+
+APP ->
+  MODELS ->
+    karateClass
+    signIn
+    student
+  PIPES ->
+    StudentFilter
+  SHARED->
+    StudentService
+    ClassService
+    CheckInService
+    DataVisualization
+  STUDENTDASHBOARD ->
+    ClassesList
+    StudentList
+  ADMINDASHBOARD
+    ListByClass ->
+      ClassesDataList
+    ListByStudent
+      ClassesByStudent

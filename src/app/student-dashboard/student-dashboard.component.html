@@ -1,0 +1,33 @@
+<p (click)="goBack()" class="goback" *ngIf="currAppState > 0"><Back</p>
+<div class="app-container container">
+  <img class="header-logo" src="../assets/images/WhiteLogo.png">
+
+  <div class="classes-section" *ngIf="appState[0]" [@flyInOut]="">
+    <h2 class="app-header">Inner Circle Martial Arts</h2>
+    <h6 class="app-subhead">Please choose a class to sign in for:</h6>
+    <div class="app-repeater-element" *ngFor="let kclass of karateClasses">
+      <span class="card-title" (click)="onSelectClass(kclass); setAppState(1);">{{ kclass.name }}</span>
+    </div>
+  </div>
+
+  <div class="student-selection-section" *ngIf="appState[1]" [@flyInOut]="">
+    <h4 class="app-header" *ngIf="classSelected">Choose your name to sign in for <b>{{classSelected.name}}</b></h4>
+    <i><h6 class="app-subhead">Type your name in this field to narrow down the list</h6></i>
+    <div class="form-group">
+      <input type="text" placeholder="Type name here" #studentNameInput (input)="studentFilterInputChanged()"/>
+    </div>
+    <div class="app-repeater-element" *ngFor="let student of (students | studentfilter: filterString)">
+      <span (click)="onSelectStudent(student); setAppState(2)">{{ student.name }}</span>
+  </div>
+</div>
+
+<div class="confirm-section" *ngIf="appState[2]" [@flyInOut]="">
+  <div class="confirm-state" *ngIf="!checkInSuccess">
+    <p>Welcome, <b>{{ studentSelected.name }}</b>.</p>
+    <p>Click confirm to sign in for <b>{{ classSelected.name }}</b></p>
+    <button class="btn" type="button" (click)="onConfirmSignIn()">Confirm Sign In</button>
+  </div>
+  <div class="success-message" *ngIf="checkInSuccess">
+    <p>Thanks!</p>
+  </div>
+</div>

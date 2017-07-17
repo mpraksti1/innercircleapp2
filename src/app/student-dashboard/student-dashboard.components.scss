@@ -1,0 +1,25 @@
+.app-container {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.header-logo {
+  width: 70px;
+  padding-bottom: 15px;
+}
+ .btn { margin-top: 10px; }
+
+ div[class*="section"] {
+   margin-top: 15px;
+   width: 940px;
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+ }
+
+ .goback {
+   position: fixed;
+   top: 25px;
+   left: 25px;
+   cursor: pointer;
+ }

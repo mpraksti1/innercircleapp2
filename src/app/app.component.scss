@@ -1,0 +1,57 @@
+h1, h2, h3, h4, h5, h6, p, span, input, label{
+  font-family: 'Open Sans',Arial,Helvetica Neue,sans-serif;
+  width: 100%;
+  text-transform: uppercase;
+  line-height: 0.8;
+  letter-spacing: 3px;
+  font-weight: 300;
+  color: #eee;
+}
+
+input[type="text"]{
+  background: rgba(197, 195, 195, 0.13);
+  border: none;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 25px;
+  width: 200px;
+  font-size: 14px;
+  color: #fff;
+  padding: 10px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.app-header {
+  margin: 10px 0 20px 0;
+}
+
+.app-subhead {
+  margin: 0 0 25px 0;
+}
+
+.app-repeater-element {
+  span {
+    display: inline-block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    background: rgba(255,255,255,0.3);
+    width: 200px;
+    border-radius: 2px;
+
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+
+    &:hover {
+      border-bottom: 2px solid #eee;
+    }
+  }
+}
+
