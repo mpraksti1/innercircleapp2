@@ -1,5 +1,26 @@
-.admin-nav {
-  padding-bottom: 20px;
+h1 {
+  float: left;
+  width: auto;
+}
 
-  a { color: #fff; }
+.admin-nav {
+  float: right;
+  padding: 30px;
+
+  a { 
+    color: #efecec;
+    background: #6f6f6f;
+    padding: 8px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+      background: #504f4f;
+    }
+  }
+}
+
+input {
+  background-color: rgb(202, 34, 34);
+  padding: 15px;
 }

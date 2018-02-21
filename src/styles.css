@@ -12,6 +12,10 @@ body.student-dash {
   animation: BackgroundAnimation 144s linear infinite;
 }
 
+body.admin-dash {
+  background-color: #c6c7ce;
+}
+
 @-webkit-keyframes BackgroundAnimation {
 0%{background-position:0% 5%}
 50%{background-position:100% 96%}

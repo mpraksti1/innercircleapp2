@@ -13,7 +13,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private checkinService: CheckinService) {}
 
   ngOnInit() {
-
+    document.querySelector('body').classList.add('admin-dash');
     this.checkinService.getSignIns({})
       .subscribe(
         (response) => {

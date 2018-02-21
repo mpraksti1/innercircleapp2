@@ -3,8 +3,8 @@
     <div class="col-sm-12">
       <h1 class="dark">Admin interface</h1>
       <div class="admin-nav">
-        <a (click)="adminPanelState = 'addItems'">Add/edit items</a>
-        <a (click)="adminPanelState = 'data'">Data visualization</a>
+        <a class="admin-panel-link" (click)="adminPanelState = 'addItems'">Add/edit items</a>
+        <a class="admin-panel-link" (click)="adminPanelState = 'data'">Data visualization</a>
       </div>
       <app-data-visualization *ngIf="adminPanelState == 'data'"></app-data-visualization>
       <app-add-items *ngIf="adminPanelState == 'addItems'"></app-add-items>
