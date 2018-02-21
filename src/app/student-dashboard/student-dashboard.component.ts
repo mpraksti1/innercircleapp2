@@ -112,29 +112,25 @@ export class StudentDashboardComponent implements OnInit {
     private checkinService: CheckinService) { }
 
   ngOnInit() {
-    // this.studentsService.getStudents()
-    //   .subscribe(
-    //     (response) => {
-    //       this.students = response;
-    //     }
-    //   );
-    // this.classesService.getClasses()
-    //   .subscribe(
-    //     (response) => {
-    //       this.karateClasses = response;
-    //     }
-    //   );
-    this.students = [{"_id":"596bdd206240c0426528270b","name":"angela bender","email":"m_e_praksti@yahoo.com","__v":0},{"_id":"596bdd2f6240c0426528270c","name":"mike praksti","email":"m_e_praksti@gmail.com","__v":0}];
-    this.karateClasses = [{"_id":"59606612dffcf3101ba99663","name":"Krav maga","description":"A class","__v":0},{"_id":"596072bde1a43710f8559ca1","name":"kempo","description":"fun","__v":0},{"_id":"596072c2e1a43710f8559ca2","name":"jujitsu","description":"fun","__v":0},{"_id":"596072cbe1a43710f8559ca3","name":"JKD","description":"fun","__v":0}];
+    document.querySelector('body').classList.add('student-dash');
+    this.studentsService.getStudents()
+      .subscribe(
+        (response) => {
+          this.students = response;
+        }
+      );
+    this.classesService.getClasses()
+      .subscribe(
+        (response) => {
+          this.karateClasses = response;
+        }
+      );
+    // this.students = [{'_id': '596bdd206240c0426528270b', 'name': 'angela bender', 'email': 'm_e_praksti@yahoo.com', '__v': 0}, {'_id': '596bdd2f6240c0426528270c', 'name': 'mike praksti', 'email': 'm_e_praksti@gmail.com', '__v': 0}];
+    // this.karateClasses = [{'_id': '59606612dffcf3101ba99663', 'name': 'Krav maga', 'description': 'A class', '__v': 0}, {'_id': '596072bde1a43710f8559ca1', 'name': 'kempo', 'description': 'fun', '__v': 0}, {'_id': '596072c2e1a43710f8559ca2', 'name': 'jujitsu', 'description': 'fun', '__v': 0}, {'_id': '596072cbe1a43710f8559ca3', 'name': 'JKD', 'description': 'fun', '__v': 0}];
   }
 
   studentFilterInputChanged() {
     this.filterString = this.studentNameInput.nativeElement.value.toLowerCase();
-  }
-
-  clearDataSet() {
-    this.classSelected = null;
-    this.studentSelected = null;
   }
 
   onSelectClass(kclass: KarateClass) {
@@ -150,18 +146,19 @@ export class StudentDashboardComponent implements OnInit {
   onConfirmSignIn() {
 
     const signin = {
-      'userId': this.studentSelected.uid,
-      'classId': this.classSelected.uid
+      userId: this.studentSelected.uid,
+      classId: this.classSelected.uid,
+      name: this.classSelected.name,
     };
 
-
+    console.log(signin);
     this.checkinService.createSignin(signin)
       .subscribe(
         (response) => {
           this.checkInSuccess = true;
           setTimeout(() => {
             this.checkInSuccess = false;
-
+            this.currAppState = 0;
             this.appState = [
               true,
               false,

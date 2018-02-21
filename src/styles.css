@@ -4,7 +4,7 @@ body {
   height: 100%;
 }
 
-body {
+body.student-dash {
   background: linear-gradient(244deg, #841e1e, #484242, #2f2020, #000000);
   background-size: 800% 800%;
 

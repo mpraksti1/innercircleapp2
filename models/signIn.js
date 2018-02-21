@@ -3,9 +3,10 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var signInSchema = new Schema({
+  name: String,
   userId: String,
   classId: String,
-  dateLogged: { type: Date, default: Date.now }
+  dateLogged: { type: Date, default: Date.now() }
 });
 
 var SignIn = mongoose.model('SignIn', signInSchema);

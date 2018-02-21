@@ -2,6 +2,8 @@
 <div class="app-container container">
   <img class="header-logo" src="../assets/images/WhiteLogo.png">
 
+  <div style="color: white">{{ appState }}</div>
+
   <div class="classes-section" *ngIf="appState[0]" [@flyInOut]="">
     <h2 class="app-header">Inner Circle Martial Arts</h2>
     <h6 class="app-subhead">Please choose a class to sign in for:</h6>

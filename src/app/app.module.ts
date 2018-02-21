@@ -20,6 +20,7 @@ import { AddItemsComponent } from './admin-dashboard/add-items/add-items.compone
 import { DataVisualizationComponent } from './admin-dashboard/data-visualization/data-visualization.component';
 
 import { ChartsModule } from 'ng2-charts';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 const ROUTES = [
   {
@@ -53,6 +54,7 @@ const ROUTES = [
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     ChartsModule,
     RouterModule.forRoot(ROUTES)
   ],

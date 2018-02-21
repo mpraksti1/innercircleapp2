@@ -58,8 +58,9 @@ router.post('/new-class', (req, res, next) => {
 router.post('/new-signin', (req, res, next) => {
 
   const signin = new SignIn({
+    name: req.body.name,
     userId: req.body.userId,
-    classId: req.body.classId
+    classId: req.body.classId,
   });
 
   signin.save(
@@ -111,29 +112,25 @@ router.get('/classes-list', (req, res) => {
   });
 });
 
-router.get('/:studentId/signins', (req, res) => {
-  const studentId = req.params.studentId;
+router.post('/getsignins', (req, res) => {
+  let queryObj = {};
 
-  SignIn.find({ userId: studentId})
-    .exec(function (err, signins) {
-      if (err) {
-          return res.status(500).json({
-              title: 'An error occurred',
-              error: err
-          });
-      }
-      res.status(200).json({
-          message: 'Success',
-          data: signins
-      });
-  });
-});
+  console.log(req.body);
 
-router.get('/:studentId/:classId/signins', (req, res) => {
-  const studentId = req.params.studentId;
-  const classId = req.params.classId;
+  if (req.body.userId) {
+    queryObj.userId = req.body.userId;
+  }
 
-  SignIn.find({ userId: studentId, classId: classId})
+  if (req.body.classId) {
+    queryObj.classId = req.body.classId;
+  }
+
+  if (req.body.dateLogged) {
+    //Set mongo query logic HERE
+    queryObj.dateLogged = req.body.dateLogged;
+  }
+  console.log('QOBJ IS', queryObj);
+  SignIn.find(queryObj)
     .exec(function (err, signins) {
       if (err) {
           return res.status(500).json({

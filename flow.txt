@@ -60,3 +60,13 @@ APP ->
       ClassesDataList
     ListByStudent
       ClassesByStudent
+
+
+Set current dates
+Create array of months between dates and set bar chart labels
+Set new curr uid
+Fetch logins data and transmute to what chart.js needs
+
+
+Search input updated
+Navigation updated

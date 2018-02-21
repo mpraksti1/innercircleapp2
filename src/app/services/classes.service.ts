@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Rx';
 import {KarateClass} from "../models/karateClass.model";
 
 @Injectable()
-
 export class ClassesService {
 
   constructor(private http: Http) { }

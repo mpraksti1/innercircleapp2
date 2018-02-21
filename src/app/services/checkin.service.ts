@@ -10,33 +10,37 @@ import {SignIn} from '../models/signIn.model';
 export class CheckinService {
 
   constructor(private http: Http) { }
+
   createSignin(signin: SignIn) {
+    console.log(signin);
     const body = JSON.stringify(signin);
-
-
     const headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post('/api/new-signin', body, { headers: headers })
       .map(data => data.json())
       .catch((error: Response) => Observable.throw(error.json));
   }
 
-  getSignIns(studentId) {
-    return this.http.get('/api/' + studentId + '/signins')
+  getSignIns(bodyObj) {
+    // console.log(bodyObj);
 
+    const body = bodyObj;
+
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.post('/api/getsignins', body)
       .map((response: Response) => {
-
-
         const signIns = response.json().data;
         const transformedSignIns: SignIn[] = [];
 
-        for (let signIn of signIns) {
+        for (const signIn of signIns) {
           transformedSignIns.push(new SignIn(
             signIn.userId,
             signIn.classId,
-            signIn.dateLogged)
+            signIn.dateLogged,
+            signIn.name)
           );
         }
 
+        // console.log(transformedSignIns);
         return transformedSignIns;
       });
   }

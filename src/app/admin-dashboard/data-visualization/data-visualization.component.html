@@ -1,3 +1,90 @@
-<p>
-  data-visualization works!
-</p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-2">
+        <label class="dark">Starting <br>month</label>
+        <div class="select-style">
+          <select name="smonth" id="startmonth" [(ngModel)]="selectedStartMonth" (ngModelChange)="onInputChanged()">
+            <option *ngFor="let month of months" [ngValue]="month.value">{{ month.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <label class="dark">Starting <br>year</label>
+        <div class="select-style">
+          <select name="syear" id="startyear" [(ngModel)]="selectedStartYear" (ngModelChange)="onInputChanged()">
+            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <label class="dark">Ending <br>month</label>
+        <div class="select-style">
+          <select name="emonth" id="endmonth" [(ngModel)]="selectedEndMonth" (ngModelChange)="onInputChanged()">
+            <option *ngFor="let month of months" [ngValue]="month.value">{{ month.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <label class="dark">Ending <br>year</label>
+        <div class="select-style">
+          <select name="eyear" id="endyear" [(ngModel)]="selectedEndYear" (ngModelChange)="onInputChanged()">
+            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="search" (click)="onSubmitChartsQuery()">Search</button>
+    </div>
+  </div>
+  <div>
+    <div class="col-sm-4">
+      <!--<div class="toggle">-->
+        <!--<span (click)="setToggleTo('classes')" class="dark">Classes</span>-->
+        <!--<span class="dark"> | </span>-->
+        <!--<span (click)="setToggleTo('students')" class="dark">Students</span>-->
+      <!--</div>-->
+      <div *ngIf="toggleVal == 'classes'">
+        <div class="app-repeater-element" *ngFor="let kclass of karateClasses">
+          <span class="card-title" (click)="onSelectClass(kclass)">{{ kclass.name }}</span>
+        </div>
+      </div>
+      <div *ngIf="toggleVal == 'students'">
+        <div class="form-group student-name-filter">
+          <input type="text" placeholder="Type name here" #studentNameInput (input)="studentFilterInputChanged()"/>
+        </div>
+        <div class="app-repeater-element" *ngFor="let student of (students | studentfilter: filterString)">
+          <span (click)="onSelectStudent(student);">{{ student.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8 chart-container-container">
+      <div style="height: 400px;" *ngIf="loaded" class="chart-container">
+        <ngx-charts-bar-vertical
+          [results]="bardata"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)"
+          (click)="onSelectClick($event)">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" *ngIf="modalIsActive">
+  <div class="mike-modal">
+    <div class="close-x" (click)="toggleModal()">X</div>
+    <h4>{{ this.currTarget.name }}'s attendence for {{ modalMonth }}</h4>
+    <ul>
+      <li *ngFor="let item of modalData">
+        {{ item.key }}: {{ item.value }}
+      </li>
+    </ul>
+  </div>
+</div>
